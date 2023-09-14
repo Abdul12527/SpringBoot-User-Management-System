@@ -50,6 +50,8 @@ This section houses the `APIController` class, which provides API endpoints for 
 - `PUT /userMan/userInfo`: Updates user information. Accepts user ID and optional parameters for name, username, address, and phone number.
 - `DELETE /userMan/user/{userId}`: Deletes a user by user ID.
 
+## Data Flow
+As soon as user hit any API the Controller handel it and Call the respective service, In Services section the buisness logic is applied and if the data base interaction required it hit the repository section. In repository section the data base interation take place
 ## Getting Started
 
 To get started with the User Management System, follow the instructions in the [Installation](#installation) section below.
