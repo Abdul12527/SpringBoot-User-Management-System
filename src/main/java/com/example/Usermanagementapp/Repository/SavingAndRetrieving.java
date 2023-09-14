@@ -24,8 +24,8 @@ public class SavingAndRetrieving {
         userDb.put(user.getUserId(),user);
     }
 
-    public List<User> getAllUsers(){
-        return userDb.values().stream().collect(Collectors.toList());
+    public HashMap<Integer,User> getAllUsers(){
+        return userDb;
     }
 
     public User getUser(Integer userId){

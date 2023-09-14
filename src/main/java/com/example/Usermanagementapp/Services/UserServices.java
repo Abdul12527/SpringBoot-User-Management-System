@@ -5,8 +5,10 @@ import com.example.Usermanagementapp.Repository.SavingAndRetrieving;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServices {
@@ -26,7 +28,7 @@ public class UserServices {
     }
 
     public List<User> getAllUsers(){
-        return dbop1.getAllUsers();
+        return new ArrayList<User>(dbop1.getAllUsers().values());
     }
 
     public boolean updateUserInfo(Integer userId,String name,String userName,String address,String phoneNumber){
