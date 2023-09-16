@@ -2,6 +2,7 @@ package com.example.Usermanagementapp.Services;
 
 import com.example.Usermanagementapp.Entities.User;
 import com.example.Usermanagementapp.Repository.SavingAndRetrieving;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +16,7 @@ public class UserServices {
     @Autowired
     SavingAndRetrieving dbop1;
 
-    public boolean addUser(User user){
+    public boolean addUser(@Valid User user){
         if(dbop1.checkUserId(user.getUserId()))
             return false;
         dbop1.addUser(user);
