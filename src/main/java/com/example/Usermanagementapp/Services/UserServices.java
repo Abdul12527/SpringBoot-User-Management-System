@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 @Service
@@ -31,13 +32,18 @@ public class UserServices {
     public List<User> getAllUsers(){
         return new ArrayList<User>(dbop1.getAllUsers().values());
     }
+    private static void updateIfNotNullAndNotEmpty(String value, Consumer<String> updater) {
+        if (value != null && !value.isEmpty()) {
+            updater.accept(value);
+        }
+    }
 
     public boolean updateUserInfo(Integer userId,String name,String userName,String address,String phoneNumber){
         if(!dbop1.checkUserId(userId))return false;
-        if(name!=null&&name.length()>0)dbop1.updateName(userId,name);
-        if(userName!=null&&userName.length()>0)dbop1.updateUserName(userId,userName);
-        if(address!=null&&address.length()>0)dbop1.updateUserAddress(userId,address);
-        if(phoneNumber!=null&&phoneNumber.length()>0)dbop1.updateUserPhoneNumber(userId,phoneNumber);
+        updateIfNotNullAndNotEmpty(name, value -> dbop1.updateName(userId, value));
+        updateIfNotNullAndNotEmpty(userName, value -> dbop1.updateUserName(userId, value));
+        updateIfNotNullAndNotEmpty(address, value -> dbop1.updateUserAddress(userId, value));
+        updateIfNotNullAndNotEmpty(phoneNumber, value -> dbop1.updateUserPhoneNumber(userId, value));
         return true;
     }
 
