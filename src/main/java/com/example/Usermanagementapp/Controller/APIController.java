@@ -2,9 +2,11 @@ package com.example.Usermanagementapp.Controller;
 
 import com.example.Usermanagementapp.Entities.User;
 import com.example.Usermanagementapp.Services.UserServices;
+
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 
 import java.util.List;
 
@@ -15,7 +17,7 @@ public class APIController {
     UserServices us;
 
     @PostMapping("/userMan/user")
-    public String addUser(@RequestBody @Valid User user){
+    public String addUser(@RequestBody  User user){
         if(us.addUser(user))return "200 added user successfully";
         return "500 user already exists";
     }
