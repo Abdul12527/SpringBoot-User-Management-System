@@ -14,7 +14,7 @@ The project is organized into several parts, each serving a specific purpose:
 
 ### 1. Configuration
 
-In this section, you'll find the configuration class for the database. Note that in this project, we're using a `HashMap` as a simulated database, with user IDs as keys and user objects as values.
+In this section, you'll find the configuration class for the database. Note that in this project, we're using a MySQL database, with user IDs as Primary keys and user.
 
 ### 2. Entities
 
@@ -25,10 +25,13 @@ This section contains the `User` class, which represents the core entity of the 
 - `userName` (String): User's username.
 - `address` (String): User's address.
 - `phoneNumber` (String): User's phone number.
+- `dateOfBirth` (string($date-time)) user's date of birth
+- `date` (string($date-time)) time stamp date component when user is created
+- `time` (string($date-time)) time stamp time component when user is created
 
 ### 3. Repository
 
-In this section, you'll find the class responsible for interacting with the database (HashMap) and performing CRUD (Create, Read, Update, Delete) operations on user data.
+In this section, you'll find the interface responsible for interacting with the database (MySQL) and performing CRUD (Create, Read, Update, Delete) operations on user data.
 
 ### 4. Services
 
@@ -52,6 +55,20 @@ This section houses the `APIController` class, which provides API endpoints for 
 
 ## Data Flow
 As soon as user hit any API the Controller handel it and Call the respective service, In Services section the buisness logic is applied and if the data base interaction required it hit the repository section. In repository section the data base interation take place
+
+## Database Scema
+User{
+userId*	integer($int32)
+name*	string
+dateOfBirth	string($date-time)
+userName*	string
+address	string
+phoneNumber*	string
+pattern: ^(\+\d{1,3})?\d{10}$
+date	string($date-time)
+time	string($date-time)
+}
+
 ## Getting Started
 
 To get started with the User Management System, follow the instructions in the [Installation](#installation) section below.
